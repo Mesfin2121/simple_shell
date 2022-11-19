@@ -12,7 +12,7 @@ void prompt(void)
 		int status, lenbuf;
 		size_t bufsize = 0;
 
-		place(":) ");
+		place("$ ");
 		lenbuf = getline(&text, &bufsize, stdin);
 		if (lenbuf == -1)
 			exit(98);
@@ -34,8 +34,11 @@ void prompt(void)
 					!(_strcmpdir(*environ, "TERM")) ||
 					!(_strcmpdir(*environ, "PATH")))
 				{
-					place(*environ), place("\n"); }
-				environ++; }}
+					place(*environ), place("\n");
+			       	}
+				environ++; 
+			}
+		}
 		child_pid = fork();
 		if (child_pid < 0)
 			perror("Error");
@@ -43,4 +46,5 @@ void prompt(void)
 			identify_string(text);
 		else
 			wait(&status);
-	}}
+	}
+}
